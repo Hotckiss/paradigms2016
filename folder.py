@@ -9,10 +9,12 @@ from yat.model import *
 class ConstantFolder:
     def visit(self, tree):
         return tree.visit(self)
+    
     def visitUnaryOperation(self, expr):
         tmp = expr.expr.visit(self)
         if isinstance(tmp, Number):
             return UnaryOperation(expr.op, tmp).evaluate(None)
+        
     def visitBinaryOperation(self, expr):
         tmpl = expr.lhs.visit(self)
         tmpr = expr.rhs.visit(self)
