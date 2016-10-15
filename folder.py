@@ -45,7 +45,7 @@ class ConstantFolder:
         return yat.model.FunctionCall(extra.fun_expr.visit(self), self.listev(extra.args))
         
     def visitConditional(self, extra):
-        return yat.model.Conditional(extra.condition.visit(self), self.listev(extra.if_true), self.listev(extra.if_false))
+        return model.Conditional(extra.condition.visit(self), self.listev(extra.if_true), self.listev(extra.if_false) if extra.if_false is not None else None)
     
 if __name__ == '__main__':
     pass
