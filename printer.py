@@ -1,9 +1,9 @@
-def bread(func):
-    def wrapper(self, arg):
+def putbraces(func):
+    def f(self, arg):
         print("(", end = '')
         func(self, arg)
         print(")", end = '')
-    return wrapper
+    return f
 class PrettyPrinter():
     def __init__(self):
         self.spaces = 0
@@ -57,19 +57,17 @@ class PrettyPrinter():
         print(") {")
         if cond.if_true:
             self.put(cond.if_true)
-        print("    " * self.spaces + "}")
-        if cond.if_false == None:
-            print("{}", end ='')
-        else:
+        print("    " * self.spaces + "}", end = '')
+        if cond.if_false != None:
             print(" else {")    
             self.put(cond.if_false)
             print("    " * self.spaces + "}", end='')
-    @bread
+    @putbraces
     def visitBinaryOperation(self, expr):
         expr.lhs.visit(self)
         print(" " + expr.op, end=' ')
         expr.rhs.visit(self)
-    @bread
+    @putbraces
     def visitUnaryOperation(self, expr):
         print(expr.op, end ='')
         expr.expr.visit(self)
