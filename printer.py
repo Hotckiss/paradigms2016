@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 14 00:23:15 2016
-
-@author: Андрей
-"""
+def bread(func):
+    def wrapper(self, arg):
+        print("(", end = '')
+        func(self, arg)
+        print(")", end = '')
+    return wrapper
 class PrettyPrinter():
     def __init__(self):
         self.spaces = 0
@@ -13,6 +11,13 @@ class PrettyPrinter():
     def visit(self, expr):
         expr.visit(self)
         print(";")
+    def put(self, expr):
+        self.spaces += 1
+        for stat in expr:
+            print("    " * self.spaces, end = '')
+            stat.visit(self)
+            print(";")
+        self.spaces -= 1
         
     def visitNumber(self, num):
         print(num.value, end='')
@@ -33,12 +38,7 @@ class PrettyPrinter():
         print("(", end = '')
         print(", ".join(fdef.function.args), end = '')
         print(") {")
-        self.spaces += 1
-        for stat in fdef.function.body:
-            print("    " * self.spaces, end = '')
-            stat.visit(self)
-            print(";")
-        self.spaces -= 1
+        self.put(fdef.function.body)
         print("    " * self.spaces + "}", end = '')
         
     def visitFunctionCall(self, call):
@@ -56,36 +56,23 @@ class PrettyPrinter():
         cond.condition.visit(self)
         print(") {")
         if cond.if_true:
-            self.spaces += 1
-            for stat in cond.if_true:
-                print("    " * self.spaces, end = '')
-                stat.visit(self)
-                print(";")
-            self.spaces -= 1
+            self.put(cond.if_true)
+        print("    " * self.spaces + "}")
         if cond.if_false == None:
-            print("}", end = '')
-        elif cond.if_false == []:
-            print("    " * self.spaces + "} else {}", end ='')
+            print("{}", end ='')
         else:
-            print("    " * self.spaces + "} else {")
-            if cond.if_false:
-                self.spaces += 1
-                for stat in cond.if_false:
-                    print("    " * self.spaces, end = '')
-                    stat.visit(self)
-                    print(";")
-                self.spaces -= 1
-                print("    " * self.spaces + "}", end='')
+            print(" else {")    
+            self.put(cond.if_false)
+            print("    " * self.spaces + "}", end='')
+    @bread
     def visitBinaryOperation(self, expr):
-        print("(", end='')
         expr.lhs.visit(self)
         print(" " + expr.op, end=' ')
         expr.rhs.visit(self)
-        print(")", end='')
+    @bread
     def visitUnaryOperation(self, expr):
-        print("(" + expr.op, end='')
+        print(expr.op, end ='')
         expr.expr.visit(self)
-        print(")", end = '')
 
         
         
