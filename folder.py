@@ -4,7 +4,10 @@ class ConstantFolder:
     def visit(self, tree):
         return tree.visit(self)
     def listev(self, expr):
-        return [x.visit(self) for x in expr]
+        if expr is not None:
+            return [x.visit(self) for x in expr]
+        else:
+            return None
     def visitUnaryOperation(self, expr):
         tmp = expr.expr.visit(self)
         if isinstance(tmp, yat.model.Number):
