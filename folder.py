@@ -9,6 +9,7 @@ class ConstantFolder:
         tmp = expr.expr.visit(self)
         if isinstance(tmp, yat.model.Number):
             return yat.model.UnaryOperation(expr.op, tmp).evaluate(None)
+        return yat.model.UnaryOperation(expr.op, tmp)
     def visitBinaryOperation(self, expr):
         tmpl = expr.lhs.visit(self)
         tmpr = expr.rhs.visit(self)
