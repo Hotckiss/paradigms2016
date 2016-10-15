@@ -4,7 +4,7 @@ class ConstantFolder:
     def visit(self, tree):
         return tree.visit(self)
     def listev(self, expr):
-        return list(map(lambda x: x.visit(self), expr))
+        return [x.visit(self) for x in expr]
     def visitUnaryOperation(self, expr):
         tmp = expr.expr.visit(self)
         if isinstance(tmp, model.Number):
