@@ -52,7 +52,7 @@ class ConstantFolder:
     
 if __name__ == '__main__':
     pass
-    pr1 = yat.printer.Prettyyat.printer()
+    pr1 = yat.printer.PrettyPrinter()
     a = yat.model.Scope()
     a["ee"] = yat.model.BinaryOperation(yat.model.Number(5), "+", yat.model.BinaryOperation(yat.model.Number(6), "*", yat.model.Number(7)))
     pr1.visit(a['ee'])
