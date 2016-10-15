@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 14 00:23:15 2016
-
-@author: Андрей
-"""
-
 class Scope(object):
     
 
