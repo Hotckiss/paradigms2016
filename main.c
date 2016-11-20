@@ -80,8 +80,8 @@ int main(int argc, char* argv[]) {
     //	printf("%d ", mas[i]);
     //printf("\n");
     free(mas);
-    //fprintf(stderr, "%.6lf\n", (clock() - t) / CLOCKS_PER_SEC);
+    //fprintf(stderr, "%lf\n", (clock() - t) / CLOCKS_PER_SEC);
     pthread_exit(NULL);
-    //fprintf(stderr, "%.6lf\n", (clock() - t) / CLOCKS_PER_SEC);
+    //fprintf(stderr, "%lf\n", (clock() - t) / CLOCKS_PER_SEC);
     return 0;
 }
