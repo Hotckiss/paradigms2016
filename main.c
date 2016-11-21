@@ -7,7 +7,7 @@ int rec_lim = 0;
 static int comp(const void* a, const void* b) {
     return *((int*)a) - *((int*)b);
 }
-static void swap(int* a, int *b){
+inline void swap(int* a, int *b){
     int tmp = *a;
     *a = *b;
     *b = tmp;
@@ -20,13 +20,23 @@ void sort(void* data) {
 	return;
     }	
     if (args->len <= 1) return;
-    int x = args->mas[args->len / 2];
-    int l = 0, r = args->len;
-    while(l < r) {
+    int x = args->mas[args->len >> 1];
+    int l = 0, r = args->len, i=0;
+    /*while(l < r) {
 	while(args->mas[l] <= x) l++;
 	while(args->mas[r] > x) r--;
-	if(l < r) swap(&(args->mas[l]), &(args->mas[r])), l++, r--;
-    }
+	if(l < r) {
+	     if(args->mas[l] > args->mas[r]) swap(&(args->mas[l]), &(args->mas[r]));
+	 l++, r--;
+        }
+    }*/
+    int* buffer_move_buf = malloc(args->len * sizeof(int));
+
+    for (; i < args->len; i++)
+	if (args->mas[i] <= x) buffer_move_buf[l++] = args->mas[i];
+        else buffer_move_buf[--r] = args->mas[i];
+    memcpy(args->mas, buffer_move_buf, sizeof(int) * args->len);
+    free(buffer_move_buf);
     //--------------------------------------------------------
     struct task_args* a1 = (struct task_args*)malloc(sizeof(struct task_args));
     a1->len = l;
@@ -80,8 +90,6 @@ int main(int argc, char* argv[]) {
     //	printf("%d ", mas[i]);
     //printf("\n");
     free(mas);
-    //fprintf(stderr, "%lf\n", (clock() - t) / CLOCKS_PER_SEC);
     pthread_exit(NULL);
-    //fprintf(stderr, "%lf\n", (clock() - t) / CLOCKS_PER_SEC);
     return 0;
 }
