@@ -45,11 +45,11 @@ void sort(void* data) {
     thpool_submit(task->pool, t1);
     thpool_submit(task->pool, t2);
 }
-static void f(task_t* task) {
+static void tree_go(task_t* task) {
     int i = 0;
     if (task == NULL) return;
     thpool_wait(task);
-    for(; i < 2; i++) f(task->c[i]);
+    for(; i < 2; i++) tree_go(task->c[i]);
     free(task->args);
     free(task);
 }
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
     a->mas = mas;
     task_t* task = task_init(&pool, sort, (void*)a);
     thpool_submit(&pool, task);
-    f(task);
+    tree_go(task);
     thpool_finit(&pool);
     //for (i = 0; i < n; i++)
     //	printf("%d ", mas[i]);
