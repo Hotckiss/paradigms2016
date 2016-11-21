@@ -20,7 +20,7 @@ void sort(void* data) {
 	return;
     }	
     if (args->len <= 1) return;
-    int x = args->mas[rand() % args->len];
+    int x = args->mas[args->len / 2];
     int l = 0, r = args->len;
     while(l < r) {
 	while(args->mas[l] <= x) l++;
