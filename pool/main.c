@@ -34,7 +34,7 @@ void sort(void* data) {
 
     for (; i < args->len; i++)
 	if (args->mas[i] <= x) buffer_move_buf[l++] = args->mas[i];
-        else buffer_move_buf[r--] = args->mas[i];
+        else buffer_move_buf[--r] = args->mas[i];
     memcpy(args->mas, buffer_move_buf, sizeof(int) * args->len);
     free(buffer_move_buf);
     //--------------------------------------------------------
