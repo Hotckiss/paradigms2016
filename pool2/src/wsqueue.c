@@ -12,7 +12,7 @@ static void queue_push(queue_t* queue, node_t* node) {
     node->next->prev = node;
     queue->size++;
 }
-static inline int queue_size(queue_t* queue) { return queue->size; }
+inline int queue_size(queue_t* queue) { return queue->size; }
 node_t* queue_pop(queue_t* queue) {
     if (!queue_size(queue)) return NULL;
     node_t* node = queue->head.prev;
