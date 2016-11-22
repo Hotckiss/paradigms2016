@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
         mas[i] = rand() % 15  + 10;
     thread_pool_t pool;
     thpool_init(&pool, t);
-    task_t* task = task_init(&pool, sort, (void*)(make(mas, n, rec_lim)));
+    task_t* task = task_init(&pool, sort, (void*)(make(mas, n, 0)));
     thpool_submit(&pool, task);
     tree_go(task);
     // check
