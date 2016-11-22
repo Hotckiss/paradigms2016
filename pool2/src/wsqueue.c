@@ -1,11 +1,11 @@
 #include "wsqueue.h"
 
-static void queue_init(queue_t* queue) {
+void queue_init(queue_t* queue) {
     queue->head.next = &queue->head;
     queue->head.prev = &queue->head;
     queue->size = 0;
 }
-static void queue_push(queue_t* queue, node_t* node) {
+void queue_push(queue_t* queue, node_t* node) {
     node->prev = &queue->head;
     node->next = queue->head.next;
     node->prev->next = node;
