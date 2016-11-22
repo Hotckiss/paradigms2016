@@ -20,7 +20,7 @@ typedef struct wsqueue {
 node_t* queue_pop(queue_t* queue);
 void wsqueue_init(wsqueue_t* queue);
 void wsqueue_push(wsqueue_t* queue, node_t* node);
-inline int wsqueue_size(wsqueue_t* queue);
+int wsqueue_size(wsqueue_t* queue);
 void wsqueue_finit(wsqueue_t* queue);
 void wsqueue_notify_all(wsqueue_t* queue);
 
