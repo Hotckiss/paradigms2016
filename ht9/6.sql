@@ -1,0 +1,1 @@
+SELECT City.Name, City.Population, Country.Population FROM City, Country WHERE Country.Code = City.CountryCode ORDER BY ( (100.0 * City.Population) / Country.Population) desc, City.Name desc limit 20;
