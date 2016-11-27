@@ -4,4 +4,3 @@ INNER JOIN LiteracyRate B ON Country.Code = B.CountryCode
 GROUP BY Country.Name, A.Year, B.Year
 HAVING min(B.Year) > A.Year
 ORDER BY (A.Rate - B.Rate) / (A.Year - B.Year) desc;
-
