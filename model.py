@@ -1,20 +1,22 @@
 class Scope(object):
     
-
     def __init__(self, parent = None):
         self.parent = parent
         self.dictionary = dict()
+        
     def __setitem__(self, key, value):
         self.dictionary[key] = value
+        
     def __getitem__(self, key):
         if key not in self.dictionary:
             if self.parent:
                 return self.parent[key]
         return self.dictionary[key]
-
+    
 class Number:
     def __init__(self, value):
         self.value = value
+        
     def evaluate(self, scope):
         return self  
         
@@ -22,6 +24,7 @@ class Function:
     def __init__(self, args, body):
         self.args = args
         self.body = body
+        
     def evaluate(self, scope):
         function_value = None
         for action in self.body:
@@ -51,7 +54,6 @@ class Conditional:
                 condition_result = i.evaluate(scope)
         return condition_result
 
-
 class Print:
 
     def __init__(self, expr):
@@ -72,6 +74,7 @@ class Read:
 
 
 class FunctionCall:
+
     def __init__(self, fun_expr, args):
         self.fun_expr = fun_expr
         self.args = args
@@ -93,6 +96,7 @@ class Reference:
 
 
 class BinaryOperation:
+
     def __init__(self, lhs, op, rhs):
         self.lhs = lhs
         self.op = op
@@ -111,16 +115,15 @@ class BinaryOperation:
     '>': lambda x, y: 1 if x > y else 0,
     '<=': lambda x, y: 1 if x <= y else 0,
     '>=': lambda x, y: 1 if x >= y else 0,
-    
     }
+
     def evaluate(self, scope):
         return Number(self.dct[self.op](self.lhs.evaluate(scope).value, self.rhs.evaluate(scope).value))
 
 class UnaryOperation:
     dct = {
     '-': lambda x: -x,
-    '!': lambda x: not x
-    
+    '!': lambda x: not x  
     }
     def __init__(self, op, expr):
         self.op = op
