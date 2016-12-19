@@ -6,6 +6,7 @@ python:
   - "3.4"
 install:
    - pip install coverage
+   - pip install coveralls
 script:
   coverage run --source model.py tst.py
 after_success:
