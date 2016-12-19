@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch
-import sys
 from io import StringIO
 from model import *
 
