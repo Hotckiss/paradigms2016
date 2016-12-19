@@ -115,7 +115,6 @@ class BinaryOperation:
     '<=': lambda x, y: 1 if x <= y else 0,
     '>=': lambda x, y: 1 if x >= y else 0,
     }
-
     def evaluate(self, scope):
         return Number(self.dct[self.op](self.lhs.evaluate(scope).value, self.rhs.evaluate(scope).value))
 
