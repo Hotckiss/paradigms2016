@@ -72,7 +72,6 @@ class Read:
         scope[self.name] = Number(num)
         return scope[self.name]
 
-
 class FunctionCall:
 
     def __init__(self, fun_expr, args):
