@@ -5,7 +5,7 @@ language:
 python:
   - "3.4"
 install:
-  - pip install -r test_requirements.txt
+   - pip install coveralls
 script:
   coverage run --source cookiecutter model.py test
 after_success:
