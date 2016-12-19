@@ -7,6 +7,6 @@ python:
 install:
    - pip install coverage
 script:
-  coverage run --source cookiecutter model.py tst.py
+  coverage run --source model.py tst.py
 after_success:
   - coveralls
