@@ -7,6 +7,6 @@ python:
 install:
   - pip install -r test_requirements.txt
 script:
-  - unittest model.py --cov model.py -v
+  - py.test model.py --cov model.py -v
 after_success:
   - coveralls
