@@ -7,6 +7,6 @@ python:
 install:
    - pip install coverage
 script:
-  coverage run --source model.py test
+  coverage run --source model.py tst.py
 after_success:
   - coveralls
