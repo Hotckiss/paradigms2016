@@ -121,7 +121,7 @@ class BinaryOperation:
 class UnaryOperation:
     dct = {
     '-': lambda x: -x,
-    '!': lambda x: not x  
+    '!': lambda x: 1 if not x else 0  
     }
     def __init__(self, op, expr):
         self.op = op
