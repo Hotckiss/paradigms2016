@@ -3,7 +3,7 @@ from unittest.mock import patch
 from io import StringIO
 from model import *
 
-class scope_test(unittest.TestCase):
+class Scope_Test(unittest.TestCase):
     def test_base_dict(self):
         s = Scope()
         s['qqqq'] = 1234567
@@ -87,7 +87,7 @@ class scope_test(unittest.TestCase):
         self.assertEqual(a32['a'], 7)
         self.assertEqual(a33['a'], 7)
         
-class number_test(unittest.TestCase):
+class Number_Test(unittest.TestCase):
     def test_typ(self):
         a = Scope()
         a['viking'] = Number(777)
@@ -100,7 +100,7 @@ class number_test(unittest.TestCase):
         self.assertIsInstance(a['non'].evaluate(a), Number)
         self.assertIsInstance(a['otr'].evaluate(a), Number)
         
-class reference_test(unittest.TestCase):
+class Reference_Test(unittest.TestCase):
     def test_all(self):
         s = Scope()
         s['q'] = Number(-2)
@@ -122,7 +122,7 @@ class reference_test(unittest.TestCase):
         #s['y'] = 333
         #self.assertIs(a.evaluate(s), 333)
 
-class function_test(unittest.TestCase):
+class Function_Test(unittest.TestCase):
     def test_typ(self):
         a = Scope()
         a['q'] = Function(['wat'], [Number(5553535), Number(35)])
@@ -147,7 +147,7 @@ class function_test(unittest.TestCase):
         a['q3'] = Function([], [])
         self.assertIs(1, 1)"""
           
-class fdef_test(unittest.TestCase):
+class Fdef_Test(unittest.TestCase):
     def test_fdef(self):
         a = Scope()
         f = Function(['i_love_yat'], [Number(5553535), Number(35)])
@@ -163,7 +163,7 @@ class fdef_test(unittest.TestCase):
         self.assertIsInstance(a['my_super_puper_func'], Function)
         self.assertIs(a['my_super_puper_func'], f)
 
-class fcall_test(unittest.TestCase):
+class Fcall_Test(unittest.TestCase):
     def test_ffull(self):
         with patch('sys.stdout', new_callable = StringIO) as cout:
             a = Scope()
@@ -181,7 +181,7 @@ class fcall_test(unittest.TestCase):
         fc = FunctionCall(fd, [Number(5553535), Number(35)])
         fc.evaluate(a)
 
-class cond_test(unittest.TestCase): # 1 - full list 2 - empty list 3 - None list
+class Cond_Test(unittest.TestCase): # 1 - full list 2 - empty list 3 - None list
     def setUp(self):
         self.s = Scope()
         self.t = Number(1)
@@ -244,7 +244,7 @@ class cond_test(unittest.TestCase): # 1 - full list 2 - empty list 3 - None list
         c = Conditional(self.f, None, None)
         c.evaluate(self.s)"""
 
-class read_test(unittest.TestCase):
+class Read_Test(unittest.TestCase):
     def test_read(self):
         for i in range(-30, 239):
             with patch('sys.stdin', new = StringIO(str(i) + '\n')), patch('sys.stdout', new_callable = StringIO) as cout:
@@ -254,7 +254,7 @@ class read_test(unittest.TestCase):
                 Print(num).evaluate(a)
                 self.assertEqual(cout.getvalue(), str(i) + '\n')
 
-class print_test(unittest.TestCase):
+class Print_Test(unittest.TestCase):
     def test_print_1(self):
         for i in range(-30, 239):
             with patch('sys.stdout', new_callable = StringIO) as cout:
@@ -269,7 +269,7 @@ class print_test(unittest.TestCase):
                 Print(Reference(str(i + 70))).evaluate(a)
                 self.assertEqual(cout.getvalue(), str(i) + '\n')
 
-class binary_test(unittest.TestCase):
+class Binary_Test(unittest.TestCase):
     def test_binary(self):
         a = Scope()
         dct = ['+', '-', '*', '/', '%', '&&', '||', '==', '!=', '<', '>', '<=', '>=']
@@ -308,7 +308,7 @@ class binary_test(unittest.TestCase):
                         else:
                             self.assertEqual(bool(int(cout.getvalue())), bool(l >= r))
                         
-class unary_test(unittest.TestCase):
+class Unary_Test(unittest.TestCase):
     def test_unary(self):
         a = Scope()
         dct = ['-', '!']
