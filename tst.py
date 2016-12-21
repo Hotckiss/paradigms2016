@@ -3,7 +3,7 @@ from unittest.mock import patch
 from io import StringIO
 from model import *
 
-class Scope_Test(unittest.TestCase):
+class Scope_Test(unittest.TestCase): 
     def test_base_dict(self):
         s = Scope()
         s['qqqq'] = 1234567
