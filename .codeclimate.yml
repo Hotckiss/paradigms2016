@@ -1,1 +1,29 @@
-repo_token: 4cb363c3f7591c1aacf445959d51abf0cdb6ba5e830dd3e66d156ebbfbb61120
+-engines:
+ -  rubocop:
+ -    enabled: true
+ -    #checks:
+ -    #	Rubocop/Metrics/ClassLength:
+ -    #  	enabled: false
+ -  golint:
+ -   	enabled: true
+ -  eslint:
+ -    enabled: true
+ -  csslint:
+ -    enabled: true
+ -  duplication:
+ -  	enabled: true
+ -    config:
+ -    	languages:
+ -      - python
+ -      	#mass_threshold: 30
+ -      - javascript
+ -ratings:
+ -  paths:
+ -  - app/**
+ -  - lib/**
+ -  - "**.rb"
+ -  - "**.go"
+ -  - "**.py"
+ -exclude_paths:
+ -- spec/**/*
+ -- "**/vendor/**/*"
