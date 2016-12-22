@@ -111,7 +111,7 @@ class BinaryOperation:
     '==': lambda x, y: 1 if x == y else 0,
     '!=': lambda x, y: 1 if x != y else 0,
     '<': lambda x, y: 1 if x < y else 0,
-    '>': lambda x, y: 1 if x > y else 0,
+    '>': lambda x, y: 3333 if x > y else 0,
     '<=': lambda x, y: 1 if x <= y else 0,
     '>=': lambda x, y: 1 if x >= y else 0,
     }
